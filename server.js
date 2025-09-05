@@ -4,10 +4,10 @@ const PORT = process.env.PORT || 3000;
 
 // Root check
 app.get("/", (req, res) => {
-  res.send("Monetag-server is working ✅ (no postback mode)");
+  res.send("Monetag-server is working ✅ using otieu.com links");
 });
 
-// List of Monetag direct links (replace with your IDs)
+// Your direct links
 const offers = {
   1: "https://otieu.com/4/9780832",
   2: "https://otieu.com/4/9780834",
@@ -16,14 +16,14 @@ const offers = {
 
 // Click redirect
 app.get("/click", (req, res) => {
-  let offerid = req.query.offerid || 1; // default = offer 1
-  let subid = req.query.subid || Date.now(); // track user (or random ID)
+  let offerid = req.query.offerid || 1; // default offer = 1
+  let subid = req.query.subid || Date.now(); // unique user ID
 
   let baseUrl = offers[offerid];
   if (!baseUrl) return res.send("Offer not found ❌");
 
-  // Add subid to the link
-  let redirectUrl = `${baseUrl}&subid=${subid}`;
+  // Add SubID (if supported by Monetag short links)
+  let redirectUrl = `${baseUrl}?subid=${subid}`;
 
   console.log(`Redirecting to: ${redirectUrl}`);
   res.redirect(redirectUrl);
@@ -32,4 +32,3 @@ app.get("/click", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
-
