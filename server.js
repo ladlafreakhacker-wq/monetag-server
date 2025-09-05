@@ -9,9 +9,9 @@ app.get("/", (req, res) => {
 
 // List of Monetag direct links (replace with your IDs)
 const offers = {
-  1: "https://syndication.exoclick.com/splash.php?idzone=9780832",
-  2: "https://syndication.exoclick.com/splash.php?idzone=9780834",
-  3: "https://syndication.exoclick.com/splash.php?idzone=9780829"
+  1: "https://otieu.com/4/9780832",
+  2: "https://otieu.com/4/9780834",
+  3: "https://otieu.com/4/9780829"
 };
 
 // Click redirect
@@ -32,3 +32,4 @@ app.get("/click", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
